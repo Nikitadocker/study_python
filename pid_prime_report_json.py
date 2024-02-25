@@ -40,8 +40,23 @@ for line in result.stdout.splitlines():
     pids["Process Number"] = int(pid)
     pids["Processs Name"] = name_pid
     result_check = check_prime(int(pid))
-    pids["Prime or Composite"] = result_check
-
+    
+    
+    if result_check == "Prime":
+        
+        result_check = True
+    else:
+        result_check = False
+    pids["Is Prime"] = result_check
+    
+    if result_check == "Composite":
+        
+        result_check = True
+    else:
+        result_check = False
+    
+    
+    pids["Is Composite"] = result_check
     final_result.append(pids)
 
 
