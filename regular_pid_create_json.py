@@ -2,6 +2,8 @@ import psutil
 import json
 import math
 import re
+import os
+
 
 
 def check_prime(number_to_check):
@@ -25,7 +27,8 @@ process_list = []
 for process in psutil.process_iter(["pid", "name"]):
     process_name = process.info["name"]  # получаем столбец с именами процессов
     process_number = process.info["pid"]  # получаем столбец с номерами процессов
-    reg_process_name = re.search(r"skype", process_name)
+    process_filter = os.environ.get('PROCESS_FILTER')
+    reg_process_name = re.search(r"{0}".format(process_filter), process_name)
     if reg_process_name:
         dict_in_file = {}
         dict_in_file["Process Name"] = process_name
