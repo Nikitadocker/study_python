@@ -22,13 +22,12 @@ result = subprocess.run(["ps", "aux", "--no-headers"], capture_output=True, text
 
 final_result = []
 for line in result.stdout.splitlines():
-    # Разделить строку по пробелам
-    fields = line.split()
-    # Извлечь PID из второго столбца
-    pid = fields[1]
 
-    # Извлечь NAME PID из десятого столбца
-    name_pid = fields[10]
+    fields = line.split()  # Разделить строку по пробелам
+
+    pid = fields[1]  # Извлечь PID из второго столбца
+
+    name_pid = fields[10]  # Извлечь NAME PID из десятого столбца
 
     pids = {}
 
@@ -49,7 +48,6 @@ for line in result.stdout.splitlines():
         pids["Is Composite"] = not result_check
 
     final_result.append(pids)
-
 
 with open("output_pids.json", "w") as file:
     json.dump(final_result, file)
