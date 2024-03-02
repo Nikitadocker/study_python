@@ -2,6 +2,7 @@ import psutil
 import json
 import math
 
+
 def check_prime(number_to_check):
 
     initial_devider = 2
@@ -17,6 +18,7 @@ def check_prime(number_to_check):
 
     return check_result
 
+
 process_list = []
 
 for process in psutil.process_iter(["pid", "name"]):
@@ -28,15 +30,20 @@ for process in psutil.process_iter(["pid", "name"]):
 
     dict_in_file["Process Name"] = process_name
     dict_in_file["Process Number"] = process_number
+    if process_number == 1:
+        dict_in_file["Is Prime"] = False
+        dict_in_file["Is Composite"] = False
 
-    process_after_check_prime = check_prime(process_number)
+    elif process_number == 2 or process_number == 3:
+        dict_in_file["Is Prime"] = True
+        dict_in_file["Is Composite"] = False
 
-    dict_in_file["Is Prime"] = process_after_check_prime
-
-    dict_in_file["Is Composite"] = not process_after_check_prime
+    else:
+        process_after_check_prime = check_prime(process_number)
+        dict_in_file["Is Prime"] = process_after_check_prime
+        dict_in_file["Is Composite"] = not process_after_check_prime
 
     process_list.append(dict_in_file)
-
 
 
 with open("process_output.json", "w") as file:
