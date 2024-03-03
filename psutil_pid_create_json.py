@@ -32,16 +32,13 @@ for process in psutil.process_iter(["pid", "name"]):
     dict_in_file["Process Number"] = process_number
     if process_number == 1:
         dict_in_file["Is Prime"] = False
-        dict_in_file["Is Composite"] = False
 
     elif process_number == 2 or process_number == 3:
         dict_in_file["Is Prime"] = True
-        dict_in_file["Is Composite"] = False
 
     else:
         process_after_check_prime = check_prime(process_number)
         dict_in_file["Is Prime"] = process_after_check_prime
-        dict_in_file["Is Composite"] = not process_after_check_prime
 
     process_list.append(dict_in_file)
 
