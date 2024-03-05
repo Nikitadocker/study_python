@@ -3,6 +3,7 @@ import json
 import math
 
 
+
 def check_prime(number_to_check):
 
     initial_devider = 2
