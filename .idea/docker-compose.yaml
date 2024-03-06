@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  psutil_pid_create_json:
+    build:
+      context: ./psutil_pid_create_json     # Specify the context directory
+      dockerfile: Dockerfile  # Specify the Dockerfile to use (if not named 'Dockerfile')
+    environment:
+      - PROCESS_FILTER=sys
+      - GET_METHOD=psutil
+  
+
+
+  check_pid_json_file:
+    build:
+      context: ./scheck_pid_json_file
+      dockerfile: Dockerfile
+
+ 
