@@ -5,6 +5,8 @@ services:
     build:
       context: ./psutil_pid_create_json     # Specify the context directory
       dockerfile: Dockerfile  # Specify the Dockerfile to use (if not named 'Dockerfile')
+    volumes:
+      - data:/app
     environment:
       - PROCESS_FILTER=sys
       - GET_METHOD=psutil
@@ -13,7 +15,12 @@ services:
 
   check_pid_json_file:
     build:
-      context: ./scheck_pid_json_file
+      context: ./check_pid_json_file
       dockerfile: Dockerfile
+    volumes:
+      - data:/app
+volumes:
+  data:
+    driver: local
 
  
