@@ -47,5 +47,6 @@ for process in all_process:
 
         process_list.append(dict_in_file)
 
-with open("process_output.json", "w") as file:
+with open("/data/process_output.json", "w") as file:
     json.dump(process_list, file)
+
